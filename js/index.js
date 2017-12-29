@@ -3,22 +3,23 @@
  */
 {
     // 轮播图
-    let imgs=document.querySelectorAll(".banner-center li");
-    let pages=document.querySelectorAll(".lunbo-box ul li");
+    let imgs=document.querySelectorAll(".imgs-box li");
+    let pages=document.querySelectorAll(".lunbo-box li");
     pages.forEach(function(value,index){
-        value.onclick=function(){
-            for(var i=0;i<imgs.length;i++){
-                imgs[i].classList.remove("active");
+        value.onclick=function() {
+            for(var i=0;i<pages.length;i++){
                 pages[i].classList.remove("active");
+                imgs[i].classList.remove("active");
             }
             this.classList.add("active");
             imgs[index].classList.add("active");
             n=index;
         }
     })
+
     // 自动轮播
+    let banner=document.querySelector(".banner-center");
     let n=0;
-    let banner=document.querySelector(".banner");
     function bannerfn(dir="r"){
         if(dir==="r"){
             n++;
@@ -26,28 +27,29 @@
                 n=0;
             }
         }else if(dir==="l"){
-           n--;
-           if(n===-1){
-               n=imgs.length-1;
-           }
-       }
-        for(var i=0;i<imgs.length;i++){
-            imgs[i].classList.remove("active");
-            pages[i].classList.remove("active");
+            n--;
+            if(n===-1){
+                n=imgs.length-1;
+            }
         }
-        imgs[n].classList.add("active");
+        for(var i=0;i<pages.length;i++){
+            pages[i].classList.remove("active");
+            imgs[i].classList.remove("active");
+        }
         pages[n].classList.add("active");
+        imgs[n].classList.add("active");
     }
-    let t=setInterval(bannerfn,3000);
+    let t=setInterval(bannerfn,5000);
     banner.onmouseover=function(){
         clearInterval(t);
     }
     banner.onmouseout=function(){
-        t=setInterval(bannerfn,3000);
+        t=setInterval(bannerfn,5000);
     }
+
     // 左右箭头
-    let left=document.querySelector(".lunbo-left");
-    let right=document.querySelector(".lunbo-right");
+    let left=document.querySelector(".prev");
+    let right=document.querySelector(".next");
     let flag=true;
     right.onclick=function(){
         if(flag){
@@ -60,6 +62,7 @@
             flag=false;
             bannerfn("l");
         }
+
     }
     imgs.forEach(function(val,index){
         val.addEventListener("transitionend",function(){
@@ -67,3 +70,4 @@
         });
     })
 }
+
