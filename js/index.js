@@ -71,3 +71,66 @@
     })
 }
 
+{
+    // 左侧导航
+    let back=document.querySelector(".back");
+    back.onclick=function(){
+        document.documentElement.scrollTop=0;
+    }
+
+}
+
+{
+    // 头部
+    let flag=true;
+    let head2=document.querySelector(".head2");
+    let menu=document.querySelector(".menu");
+    console.log(menu);
+    window.onscroll=function(){
+        if(flag) {
+            let st = document.documentElement.scrollTop;
+            if (st >= 530) {
+                head2.style.display = "block";
+            } else {
+                head2.style.display = "none";
+            }
+            if (st >= 560) {
+                menu.style.display = "block";
+            } else {
+                menu.style.display = "none";
+            }
+            lists.forEach(function (value, index) {
+                if (st >= value.offsetTop) {
+                    for (let i = 0; i < lists.length; i++) {
+                        floors[i].classList.remove("active");
+                    }
+                    floors[index].classList.add("active");
+                }
+            })
+        }
+    }
+
+
+    let lists = document.querySelectorAll(".item");
+    let floors = document.querySelectorAll(".menu ul li");
+    floors.forEach(function (ele, index) {
+        ele.onclick = function () {
+            let ot = lists[index].offsetTop;
+            let now = document.documentElement.scrollTop;
+            let speed = (ot - now) * 30 / 400;
+            let time = 0;
+            flag=false;
+            let t = setInterval(function () {
+                now += speed;
+                time += 30;
+                if (time === 300) {
+                    clearInterval(t);
+                    now = ot;
+                    flag=true;
+                }
+                document.documentElement.scrollTop = now;
+            }, 30)
+        }
+    })
+}
+
