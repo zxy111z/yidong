@@ -114,9 +114,6 @@ header{
     z-index: 1000;
     background: #ffffff;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    position: fixed;
-    left: 0;
-    top: 0;
     display: none;
 }
 .head2_box{
@@ -233,16 +230,66 @@ nav{
     background: url("../img/nav1.png") no-repeat center;
     background-size: 230px 42px;
 }
-.nav-left-city{
+.city-box{
     width: 47px;
     height: 18px;
     float: left;
+    position: relative;
     margin: 40px 0 0 35px;
+}
+.nav-left-city{
+    width: 47px;
+    height: 18px;
     background: url("../img/nav2.png") no-repeat right center;
     padding: 0 15px 0 0;
     font: 16px/18px "microsoft yahei";
     color: #333333;
     cursor: pointer;
+}
+.city{
+    width: 540px;
+    height: 71px;
+    padding: 10px 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.city li{
+    font-size: 12px;
+    padding: 5px 0;
+    text-align: left;
+    clear: both;
+    height: 27px;
+}
+.city li span{
+    float: left;
+}
+.city li a{
+    clear: none;
+    color: #0085d0;
+    float: left;
+    font-weight: bold;
+    padding: 0 20px;
+}
+.city li a span{
+    color: #0085d0;
+}
+.city li:nth-of-type(2) dl{
+    float: left;
+    height: 17px;
+    font-size: 12px;
+}
+.city li:nth-of-type(2) dl a{
+    transition: all 0.2s ease;
+    color: #666;
+    display: inline-block;
+    padding: 0 5px;
+    height: 17px;
+}
+.city li:nth-of-type(2) dl a:hover{
+    color: #0085d0;
 }
 .nav-right{
     width: 500px;
@@ -288,12 +335,12 @@ nav{
 .hot a:hover{
     color: #57BAFA;
 }
-/*搜索框开始*/
 /*<!--导航开始-->*/
 .nav-head{
     width: 100%;
     height: 48px;
     z-index: 1;
+
 }
 .nav-head-box{
     width: 1200px;
@@ -341,26 +388,27 @@ nav{
     width: 1200px;
     height: 398px;
     margin: 0 auto;
-    background: red;
+    position: relative;
 }
 .banner-left{
     width: 234px;
     height: 398px;
     float: left;
     background: #ffffff;
-    z-index: 10;
+    /*z-index: 10;*/
 }
 .banner-left li{
     width: 233px;
     height: 52px;
     border: 1px solid #ffffff;
     background: #ffffff url("../img/nav_bgli.png") no-repeat 195px center;
+    cursor: pointer;
 }
 .banner-left li:hover{
     border: 1px solid #3eb4fa;
     border-right:2px solid #fff;
 }
-.banner-left li a{
+.banner-left li span{
     display: flex;
     align-items: center;
     float: left;
@@ -370,14 +418,101 @@ nav{
     font: 16px/50px "microsoft yahei";
     color: #333333;
 }
-.banner-left li a:hover{
+.banner-left li span:hover{
     color: #3eb4fa;
 }
-.banner-left li a img{
+.banner-left li:hover{
+    background: #ffffff url("../img/nav_bgli.jpg") no-repeat 195px center;
+}
+.banner-left li span img{
     width: 21px;
     height: 21px;
     display: inline-block;
 }
+
+/*办业务开始*/
+.navbox{
+     display: none;
+    width: 965px;
+    height: 415px;
+    border: 1px solid #3eb4fa;
+    background: #ffffff;
+    z-index: 999;
+    position: absolute;
+    left: 233px;
+    top: 0;
+}
+.xianshi{
+    display: block;
+}
+.navboxLeft{
+    float: left;
+    width: 700px;
+    min-height: 396px;
+    padding: 10px 30px;
+}
+.navbox .navboxLeft dl {
+    float: left;
+    width: 640px;
+    padding: 5px 0;
+}
+.navbox .navboxLeft dl dt {
+    float: left;
+    width: 80px;
+    font: bold 12px/30px "microsoft yahei";
+    color: #494949;
+    background: url(../img/nav_bgli2.jpg) no-repeat 65px center;
+}
+.navbox .navboxLeft dl dt a{
+    color: #666;
+}
+.navbox .navboxLeft dl dt a:hover{
+    color: #3eb4fa;
+}
+.navbox .navboxLeft dl dd {
+    float: left;
+    width: 560px;
+    min-height: 30px;
+    border-bottom: 1px solid #f3f3f3;
+}
+.navbox .navboxLeft dl dd a {
+    display: block;
+    float: left;
+    height: 20px;
+    padding: 0 10px;
+    margin: 5px 0;
+    font: 12px/20px "microsoft yahei";
+    color: #494949;
+    border-right: 1px solid #d7d7d7;
+}
+.navbox .navboxLeft dl dd a:hover{
+    color: #e40077;
+}
+.navbox .navboxLeft dl dd a.more {
+    color: #3eb4fa;
+}
+.navboxRight {
+    float: left;
+    width: 230px;
+    height: 396px;
+    padding: 10px 30px 10px 0px;
+    background: #ffffff;
+}
+.navboxRight a{
+    display: block;
+    width: 230px;
+    height: 175px;
+}
+.navboxRight img {
+    display: block;
+    width: 230px;
+    height: 175px;
+    margin-bottom: 20px;
+}
+.navbox_yy {
+    width: 710px;
+}
+/*办公结束*/
 .banner-center{
     width: 705px;
     height: 398px;
@@ -416,7 +551,7 @@ nav{
     left: 50%;
     margin-left: -100px;
     bottom: 10px;
-    z-index: 999;
+    z-index: 99;
     display: flex;
     justify-content: space-around;
 }
@@ -573,7 +708,7 @@ nav{
     background: url("../img/prev.png") no-repeat;
     width: 34px;
     height: 69px;
-    z-index: 999;
+    z-index: 99;
     position: absolute;
     left: 0;
     top: 50%;
@@ -586,7 +721,7 @@ nav{
     background: url("../img/next.png") no-repeat;
     width: 34px;
     height: 69px;
-    z-index: 999;
+    z-index: 99;
     position: absolute;
     top: 50%;
     opacity: 0;
@@ -653,11 +788,10 @@ nav{
     z-index: 10;
 }
 .yhcon{
+    width: 10000px;
     height: 170px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
+    transition: all .5s;
+    margin-left: -968px;
 }
 .indexbox{
     width: 235px;
@@ -665,6 +799,7 @@ nav{
     margin-right:7px;
     position: relative;
     background: #f4f4f4;
+    float: left;
 }
 .indexbox a{
     display: block;
@@ -801,7 +936,7 @@ section{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.box2 a img{
+.sect-img-left .box2 a img{
     display: block;
     width: 180px;
     height: 140px;
@@ -1667,21 +1802,14 @@ footer a:hover{
     line-height: 39px;
     border-bottom: 1px dotted #c2c2c2;
     background: #ffffff;
-    position: relative;
     box-sizing: content-box!important;
 }
 .menu ul li span {
-    display: none;
     width: 28px;
     padding: 0 2px;
     height: 34px;
     padding-top: 5px;
-    position: absolute;
     text-align: center;
-    top: 0;
-    left: 0;
-    right: 0px;
-    bottom: 0px;
     color: #ffffff;
     background: #00b0f9;
     font: 12px/15px "microsoft yahei";

@@ -1,8 +1,9 @@
 /**
  * Created by Administrator on 2017/12/28/028.
  */
+// 轮播图
 {
-    // 轮播图
+
     let imgs=document.querySelectorAll(".imgs-box li");
     let pages=document.querySelectorAll(".lunbo-box li");
     pages.forEach(function(value,index){
@@ -70,22 +71,20 @@
         });
     })
 }
-
+// 左侧导航
 {
-    // 左侧导航
+
     let back=document.querySelector(".back");
     back.onclick=function(){
         document.documentElement.scrollTop=0;
     }
 
 }
-
+// 头部
 {
-    // 头部
     let flag=true;
     let head2=document.querySelector(".head2");
     let menu=document.querySelector(".menu");
-    console.log(menu);
     window.onscroll=function(){
         if(flag) {
             let st = document.documentElement.scrollTop;
@@ -100,11 +99,15 @@
                 menu.style.display = "none";
             }
             lists.forEach(function (value, index) {
-                if (st >= value.offsetTop) {
+                if (st >= value.offsetTop-110) {
                     for (let i = 0; i < lists.length; i++) {
                         floors[i].classList.remove("active");
+                        em[i].style.display="block";
+                        zi[i].style.display="none";
                     }
                     floors[index].classList.add("active");
+                    em[index].style.display="none";
+                    zi[index].style.display="block";
                 }
             })
         }
@@ -113,6 +116,9 @@
 
     let lists = document.querySelectorAll(".item");
     let floors = document.querySelectorAll(".menu ul li");
+    let em=document.querySelectorAll(".menu ul li em");
+    let zi=document.querySelectorAll(".menu ul li span");
+    console.log(zi);
     floors.forEach(function (ele, index) {
         ele.onclick = function () {
             let ot = lists[index].offsetTop;
@@ -132,5 +138,77 @@
             }, 30)
         }
     })
+}
+// 侧导航
+{
+    let box=document.querySelectorAll(".banner-left li");
+    let item=document.querySelectorAll(".banner-box .navbox");
+    box.forEach(function(value,index){
+        value.onmouseover=function(){
+            for(let i=0;i<box.length;i++){
+                item[i].classList.remove("xianshi")
+            }
+            item[index].classList.add("xianshi")
+        }
+        value.onmouseout=function(){
+            for(let i=0;i<box.length;i++){
+                item[i].classList.remove("xianshi")
+            }
+        }
+    })
+}
+
+// 优惠专区
+{
+    let box=document.querySelector(".promotion-right");
+    let inner=document.querySelector(".yhcon");
+    let right=document.querySelector(".yhpre");
+    let left=document.querySelector(".yhnext");
+    let n=4;
+    let dir="right";
+    let st=setInterval(movefn,3000);
+    function movefn(){
+        inner.style.transition="all .5s";
+        if(dir==="right") {
+            n++;
+        }else {
+            n--;
+        }
+        inner.style.marginLeft=-n*242+"px";
+    }
+    inner.addEventListener("transitionend",function(){
+        flag=true;
+        if(n===11){
+            inner.style.transition="none";
+            inner.style.marginLeft="-968px";
+            n=4;
+        }
+        if(n===0){
+            inner.style.transition="none";
+            inner.style.marginLeft="-1694px";
+            n=7;
+        }
+    })
+    window.onblur=box.onmouseover=function(){
+        clearInterval(st);
+    }
+    window.onfocus=box.onmouseout=function(){
+        st=setInterval(movefn,3000)
+    }
+    let flag=true;
+    right.onclick=function(){
+        if(flag){
+            dir="right";
+            flag=false;
+            movefn();
+        }
+    }
+    left.onclick=function(){
+        if(flag){
+            dir="left";
+            flag=false;
+            movefn();
+        }
+    }
 }
 
