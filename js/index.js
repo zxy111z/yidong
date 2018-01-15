@@ -118,7 +118,6 @@
     let floors = document.querySelectorAll(".menu ul li");
     let em=document.querySelectorAll(".menu ul li em");
     let zi=document.querySelectorAll(".menu ul li span");
-    console.log(zi);
     floors.forEach(function (ele, index) {
         ele.onclick = function () {
             let ot = lists[index].offsetTop;
@@ -139,6 +138,19 @@
         }
     })
 }
+// 城市
+{
+    let city=document.querySelector(".nav-left-city");
+    let cityBox=document.querySelector(".city");
+    let navBox=document.querySelector(".nav-box");
+    city.onclick=function(e){
+        e.stopPropagation();
+        cityBox.style.display="block";
+    }
+    navBox.onclick=function(){
+        cityBox.style.display="none";
+    }
+}
 // 侧导航
 {
     let box=document.querySelectorAll(".banner-left li");
@@ -157,7 +169,6 @@
         }
     })
 }
-
 // 优惠专区
 {
     let box=document.querySelector(".promotion-right");
@@ -212,3 +223,54 @@
     }
 }
 
+// 公告
+{
+    let notices=document.querySelectorAll(`.indexgg li`);
+    let left=document.querySelector(".left");
+    let right=document.querySelector(".right");
+    let box=document.querySelector(".indexgg ul");
+    function fun() {
+        notices.forEach(function (value) {
+            value.classList.toggle('active');
+        })
+    }
+    let st=setInterval(fun,4000);
+}
+
+// 5F轮播
+{
+    let imgs=document.querySelectorAll(".bd ul li");
+    let circle=document.querySelectorAll(".hd ul li");
+    circle.forEach(function(value,index){
+        value.onmouseover=function(){
+            for(let i=0;i<imgs.length;i++){
+                circle[i].classList.remove("hd-one");
+                imgs[i].classList.remove("active");
+            }
+            this.classList.add("hd-one");
+            imgs[index].classList.add("active");
+            n=index;
+        }
+    });
+    let n=0;
+    function moveFn(){
+        n++;
+        if(n===imgs.length){
+            n=0;
+        }
+        for(var i=0;i<imgs.length;i++){
+            circle[i].classList.remove("hd-one");
+            imgs[i].classList.remove("active");
+        }
+        circle[n].classList.add("hd-one");
+        imgs[n].classList.add("active");
+    }
+    let st=setInterval(moveFn,4000);
+    let box=document.querySelector(".slideBox");
+    box.onmouseover=function(){
+        clearInterval(st);
+    };
+    box.onmouseout=function(){
+        st=setInterval(moveFn,4000);
+    };
+}
