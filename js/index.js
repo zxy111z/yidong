@@ -163,7 +163,19 @@
     });
 
 }
-
+// 城市
+{
+    let city=document.querySelector(".nav-left-city");
+    let cityBox=document.querySelector(".city");
+    let navBox=document.querySelector(".nav-box");
+    city.onclick=function(e){
+        e.stopPropagation();
+        cityBox.style.display="block";
+    }
+    navBox.onclick=function(){
+        cityBox.style.display="none";
+    }
+}
 // 优惠专区
 {
     let box=document.querySelector(".promotion-right");
@@ -218,7 +230,7 @@
     }
 }
 
-// 下边的轮播
+// 5F轮播
 {
     let b=document.querySelector(".smallslide ");
     let hd=document.querySelectorAll(".hd ul li");
@@ -233,39 +245,32 @@
             bd[index].classList.add("bdd");
             n=index;
         };
-
     });
 
-let n=0;
-function fn() {
-    n++;
-    if(n===hd.length){
-        n=0
+    let n=0;
+    function fn() {
+        n++;
+        if(n===hd.length){
+            n=0
+        }
+        for(let i=0;i<hd.length;i++){
+            hd[i].classList.remove("hd-one");
+            bd[i].classList.remove("bdd");
+        }
+        hd[n].classList.add("hd-one");
+        bd[n].classList.add("bdd");
     }
-    for(let i=0;i<hd.length;i++){
-        hd[i].classList.remove("hd-one");
-        bd[i].classList.remove("bdd");
-    }
-    hd[n].classList.add("hd-one");
-    bd[n].classList.add("bdd");
 
+    let st=setInterval(fn,5000);
 
+        b.onmouseover=function(){
+            clearInterval(st);
+        }
+        b.onmouseout=function(){
+            st=setInterval(fn,5000);
+        }
 }
-
-let st=setInterval(fn,5000);
-
-    b.onmouseover=function(){
-        clearInterval(st);
-    }
-    b.onmouseout=function(){
-        st=setInterval(fn,5000);
-    }
-
-
-
-
-}
-//轮播下边箭头
+//流行乐风
 {
     let inner=document.querySelector(".inner_fy2");
     let yier=document.querySelector(".yier");
@@ -282,24 +287,13 @@ let st=setInterval(fn,5000);
         inner.style.margin="20px -705px";
         yier.innerHTML="2/2"
     };
-
-
-
-
-
-
-
 }
 
-
-
+// 咪咕音乐选项卡
 {
     let tabboxinner=document.querySelectorAll(".tabbox_inner ");
     let tabnavli=document.querySelectorAll(".tabnav li");
-
     function jiujiji(sigetuijian,shu) {
-
-
         tabnavli.forEach(function (value,index) {
             let content=sigetuijian[index];
             let prevv=content.querySelector(".prevv");
@@ -317,12 +311,7 @@ let st=setInterval(fn,5000);
 
                 }
                 value.classList.add("tabnavli");
-
-
             };
-
-
-
             innerfy.forEach(function (v,i) {
                 prevv.onclick=function () {
 
@@ -330,8 +319,6 @@ let st=setInterval(fn,5000);
                     innerfy[1].style.display="none";
                     yer.innerHTML="1/2";
                 };
-
-
                 nextt.onclick=function () {
                     innerfy[0].style.display="none";
                     innerfy[1].style.display="block";
@@ -339,22 +326,13 @@ let st=setInterval(fn,5000);
                     yer.innerHTML="2/2"
                 };
             })
-
-
-
-
         });
-
-
     }
     jiujiji(tabboxinner);
 }
 
+// 公告
 {
-
-
-
-
     let left=document.querySelector(".left") ;
     let right=document.querySelector(".right") ;
     let rowli=document.querySelectorAll(".row li") ;
@@ -367,22 +345,15 @@ let st=setInterval(fn,5000);
 
     };
     right.onclick=function() {
-
         let row=document.querySelector(".row");
         row.insertBefore(row.lastChild,row.firstChild);
     };
-
-
-
-
-
-
-         function fn(){
+    function fn(){
          let row=document.querySelector(".row");
          row.appendChild(row.firstChild);
 
      }
-     let ttt=setInterval(fn,2000);
+    let ttt=setInterval(fn,2000);
     indexgg.onmouseenter=function () {
         clearInterval(ttt)
     } ;
